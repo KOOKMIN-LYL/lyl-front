@@ -7,4 +7,7 @@ export default {
     createUser(data) {
         return axios.post('/auth', data);
     },
+
+    //api 브랜치 연습
+
 };
