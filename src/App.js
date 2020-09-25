@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Login, Signup, Product, Cart, Order } from 'pages';
+import { Login, Signup, Product, Cart, Order, Main } from 'pages';
 import Header from './components/Header'
 import 'style/App.css'
 
@@ -12,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Header></Header>
         <div className="content">
+          <Route exact path='/' component={Main} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/product' component={Product} />

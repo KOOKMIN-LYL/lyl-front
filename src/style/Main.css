@@ -1,0 +1,14 @@
+.bestSeller {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.bestSellerItem {
+    display: inline-block;
+    width: 300px;
+    margin: 20px;
+}
+
+.productLink {
+    color: black !important;
+}
