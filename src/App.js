@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Login, Signup, Product, Cart, Order, Main } from 'pages';
-import Header from './components/Header'
+import Header from 'components/header/Header'
 import 'style/App.css'
 
 function App() {
