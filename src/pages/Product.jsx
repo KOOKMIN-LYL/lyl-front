@@ -10,7 +10,7 @@ const Product = () => {
         <>
             <div className="imgArea">
                 <div className="img">
-                    <img src={img}></img>
+                    <img src={img} alt=""></img>
                 </div>
             </div>
             <div className="detailArea">
