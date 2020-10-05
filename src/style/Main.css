@@ -1,3 +1,7 @@
+.mainImage img {
+    width: 100%;
+}
+
 .bestSeller {
     margin-top: 50px;
     text-align: center;
