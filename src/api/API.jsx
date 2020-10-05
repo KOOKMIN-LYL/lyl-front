@@ -7,9 +7,16 @@ export default {
 
     getCategory() {
         return axios.get('/category');
+    },
+
+    getMainImage() {
+        return axios.get('/mainimage');
+    },
+
+    getProduct(data) {
+        return axios.post('/product', {
+            productId : data,
+        });
     }
 
-    //api 브랜치 연습
-    //api 브랜치 연습 한번 더해봄
-    
 };
