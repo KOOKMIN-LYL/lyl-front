@@ -23,7 +23,7 @@ const Order = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td> <img src={img} width="90"></img></td>
+                                <td> <img src={img} width="90" alt=""></img></td>
                                 <td>
                                     SACRED HEART PENDANT
                                     <div>[옵션: 전체 실버/marina 2.4mm 45cm (+30,000)] </div>

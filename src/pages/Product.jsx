@@ -1,21 +1,34 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap'
-
 import 'style/Product.css'
+import Api from 'api/API';
 import img from '1.jpg';
 
-const Product = () => {
+const Product = ({ match }) => {
+    const [product, setProduct] = useState({});
+
+    useEffect(() => {
+        const getProduct = async () => {
+            await Api
+                .getProduct(match.params)
+                .then((res) => {
+                    setProduct(res.data);
+                });
+        };
+
+        getProduct();
+    }, [match.params])
+
     return (
         <>
             <div className="imgArea">
                 <div className="img">
-                    <img src={img}></img>
+                    <img src={img} alt=""></img>
                 </div>
             </div>
             <div className="detailArea">
                 <div className="productName">
-                    <h4>CROWN OF THORNS RING</h4>
+                    <h4>{product.productName}</h4>
                 </div>
                 <div className="productDetail">
                     <table>
@@ -23,7 +36,7 @@ const Product = () => {
                             <tr>
                                 <td className="price" colSpan="2">199,000 won</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th>제조사</th>
                                 <td>자체제작</td>
                             </tr>
@@ -34,7 +47,7 @@ const Product = () => {
                             <tr>
                                 <th>상품코드</th>
                                 <td>P0000BND</td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </table>
                 </div>

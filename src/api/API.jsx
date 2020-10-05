@@ -1,13 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import axios from 'axios';
 
-import { Navbar, Nav } from 'react-bootstrap'
+//axios.defaults.baseURL = 'http://10.19.247.182:3001';
+axios.defaults.baseURL = 'http://localhost:3001';
 
-import 'style/Header.css'
+export default {
 
-const Header = () => {
-    return (
-    )
+    getCategory() {
+        return axios.get('/category');
+    },
+
+    getMainImage() {
+        return axios.get('/mainimage');
+    },
+
+    getProduct(data) {
+        return axios.post('/product', {
+            productId : data,
+        });
+    }
+
 };
-
-export default Header;
