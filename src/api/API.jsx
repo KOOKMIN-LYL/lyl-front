@@ -17,6 +17,30 @@ export default {
         return axios.post('/product', {
             productId : data,
         });
-    }
+    },
+
+    getCart(data) {
+        return axios.post('/cart', {
+            usn: data
+        });
+    },
+
+    addCart(data) {
+        return axios.post('/addcart', {
+            productId : data,
+        });
+    },
+
+    deleteCart(data) {
+        return axios.post('/cart', {
+            productId : data,
+        });
+    },
+
+    getOrder(data) {
+        return axios.post('/order', {
+            usn: data
+        });
+    },
 
 };

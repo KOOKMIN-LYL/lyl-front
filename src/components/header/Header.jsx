@@ -22,7 +22,7 @@ const Header = () => {
 
     const makeCategory = category.map((category) => {
         return (
-            <Link to="/product" className="headerLink" key={category.categoryId}>{category.categoryName.toUpperCase()}</Link>
+            <Link to="/product" className="headerLink" key={category.id}>{category.name.toUpperCase()}</Link>
         )
     })
 

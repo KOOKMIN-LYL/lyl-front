@@ -4,8 +4,34 @@ import 'style/Product.css'
 import Api from 'api/API';
 import img from '1.jpg';
 
-const Product = ({ match }) => {
-    const [product, setProduct] = useState({});
+const Product = ({ match, history }) => {
+    const [product, setProduct] = useState({
+        productOption: []
+    });
+
+    const makeOption = product.productOption.map((option, key) => {
+        return (
+            <option key={key} value={option}>{option}</option>
+        )
+    });
+
+    const addCart = (e) => {
+        e.preventDefault();
+
+        const addCart = async () => {
+            await Api
+                .addCart(match.params)
+                .then((res) => {
+                    console.log(res.data);
+                });
+        };
+
+        addCart();
+
+        
+
+        history.push('/cart')
+    }
 
     useEffect(() => {
         const getProduct = async () => {
@@ -34,7 +60,7 @@ const Product = ({ match }) => {
                     <table>
                         <tbody>
                             <tr>
-                                <td className="price" colSpan="2">199,000 won</td>
+                                <td className="price" colSpan="2">{`${product.productPrice} won`}</td>
                             </tr>
                             {/* <tr>
                                 <th>제조사</th>
@@ -59,9 +85,7 @@ const Product = ({ match }) => {
                                 <td><select>
                                     <option value="">- [필수] 옵션을 선택해 주세요 -</option>
                                     <option value="**" disabled>-------------------</option>
-                                    <option value="학생">학생</option>
-                                    <option value="회사원">회사원</option>
-                                    <option value="기타">기타</option>
+                                    {makeOption}
                                 </select></td>
                             </tr>
                         </tbody>
@@ -69,7 +93,7 @@ const Product = ({ match }) => {
                 </div>
                 <div className="buttonArea">
                     <Button variant="dark" className="darkBtn" block>BUY NOW</Button>
-                    <Button variant="secondary" className="greyBtn">ADD TO CART</Button>
+                    <Button variant="secondary" className="greyBtn" onClick={addCart}>ADD TO CART</Button>
                     <Button variant="secondary" className="greyBtn">WISHLIST</Button>
                 </div>
             </div>
