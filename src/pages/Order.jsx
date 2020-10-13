@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 
+import Api from 'api/API';
 import 'style/Order.css';
 import img from '1.jpg';
 
 const Order = () => {
+    const [orderList, setOrderList] = useState([]);
+
+    useEffect(() => {
+        const getOrder = async () => {
+            await Api
+                .getOrder()
+                .then((res) => {
+                    setOrderList(res.data.orderList);
+
+                    console.log(res.data);
+                });
+        };
+
+        getOrder();
+    }, [])
+
     return (
         <>
             <div className="orderC">

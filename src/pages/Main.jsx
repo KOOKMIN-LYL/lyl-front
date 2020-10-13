@@ -30,7 +30,7 @@ const Main = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 10000,
     };
 
     const makeMainImge = mainImage.map((product) => {

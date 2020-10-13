@@ -10,17 +10,17 @@ app.use('/category', (req, res) => {
     res.json({
         category: [
             {
-                categoryId: 1,
-                categoryName: 'shirt'
+                id: 1,
+                name: 'shirt'
             },
             {
-                categoryId: 2,
-                categoryName: 'pants'
+                id: 2,
+                name: 'dfsgf'
             },
             {
-                categoryId: 3,
-                categoryName: 'jaket'
-            }
+                id: 3,
+                name: 'fgdggd'
+            },
         ]
     });
 });
@@ -44,13 +44,64 @@ app.use('/product', (req, res) => {
     res.json({
         productId: 1,
         productImage: 'aa',
-        productName: 'CROWN OF TddHORNS RING',
-        productPrice: '199,000 won',
+        productName: 'CROWN OF THORNS RING',
+        productPrice: 199000,
         productOption: [
             '블랙', '화이트', '그레이'
         ]
     });
 });
+
+app.use('/addcart', (req, res) => {
+    res.json({
+        message : 'dd'
+    });
+});
+
+app.use('/cart', (req, res) => {
+    res.json({
+        cartList: [{
+            productId: 1,
+            productImage: 'aa',
+            productName: 'CROWN OF TH   ORNS RING',
+            productPrice: 199000,
+            productCount : 3,
+            checkedOption : '블랙'
+        },
+        {
+            productId: 2,
+            productImage: 'aa',
+            productName: 'CROWN OF THORNS RING',
+            productPrice: 199000,
+            productCount : 1,
+            checkedOption : '화이트'
+        },
+        ]
+    });
+});
+
+app.use('/order', (req, res) => {
+    res.json({
+        orderList: [{
+            productId: 1,
+            productImage: 'aa',
+            productName: 'CROWN OF TH   ORNS RING',
+            productPrice: 199000,
+            productCount : 3,
+            checkedOption : '블랙'
+        },
+        {
+            productId: 2,
+            productImage: 'aa',
+            productName: 'CROWN OF THORNS RING',
+            productPrice: 199000,
+            productCount : 1,
+            checkedOption : '화이트'
+        },
+        ]
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`express is running on ${port}`);
