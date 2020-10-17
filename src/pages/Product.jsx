@@ -15,6 +15,8 @@ const Product = ({ match, history }) => {
         )
     });
 
+    console.log(match.params);
+
     const addCart = (e) => {
         e.preventDefault();
 
@@ -27,8 +29,6 @@ const Product = ({ match, history }) => {
         };
 
         addCart();
-
-        
 
         history.push('/cart')
     }
