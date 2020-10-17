@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Login, Signup, Product, Cart, Order, Main } from 'pages';
+import { Login, Signup, Category, Product, Cart, Order, Main } from 'pages';
 import Header from 'components/header/Header'
 import 'style/App.css'
 
@@ -14,6 +14,7 @@ function App() {
         <div className="content">
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path='/category/:id' component={Category} />
           <Route exact path='/product/:id' component={Product} />
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/order' component={Order} />

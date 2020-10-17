@@ -36,13 +36,13 @@ const Cart = () => {
         };
 
         getCart();
-    }, [])
+    }, [setCartList])
 
     useEffect(() => {
         setTotalPrice(numberFormat(cartList.reduce((acc, cur) => {
             return acc + cur.productPrice*cur.productCount;
         }, 0)))
-    })
+    }, [setTotalPrice, cartList])
 
     return (
         <div className="cartC">

@@ -1,0 +1,55 @@
+.order {
+    float: right;
+}
+
+.gird4 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: 50px;
+    grid-column-gap: 20px;
+    justify-items: center;
+}
+
+.box {
+    text-align: center;
+}
+
+.productLink:hover {
+    text-decoration: none;
+}
+
+.productLink:hover p{
+    color: gray;
+}
+
+.about {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.about p {
+    margin: 0;
+}
+
+.about.name {
+    font-weight: bolder;
+}
+
+.about .price {
+    font-weight: 400;
+}
+
+.pagination {
+    margin: 50px 0 50px 0;
+    justify-content: center;
+}
+
+.pagination .page-link {
+    color: black;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: black;
+    border-color: black;
+}

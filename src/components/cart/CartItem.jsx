@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -6,14 +6,8 @@ import 'style/Cart.css';
 import img from '1.jpg';
 
 const CartItem = ({ id, name, option, price, count, cartList, setCartList }) => {
-    const [checked, setChecked] = useState(false);
-
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    const handleChecked = (e) => {
-        setChecked(e.target.checked)
     }
 
     const deleteItem = (e) => {
@@ -22,7 +16,6 @@ const CartItem = ({ id, name, option, price, count, cartList, setCartList }) => 
 
     return (
         <tr>
-            {/* <td><input type="checkbox" checked={checked} onChange={handleChecked}></input></td> */}
             <Link to={`product/${id}`}><td> <img src={img} width="90" alt=""></img></td></Link>
             <td>
                 {name}
