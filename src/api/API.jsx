@@ -5,6 +5,11 @@ axios.defaults.baseURL = 'http://localhost:8080';
 
 export default {
 
+    login(data) {
+        console.log(data);
+        return axios.post('/login', data);
+    },
+
     getCategory() {
         return axios.get('/category');
     },
@@ -18,9 +23,7 @@ export default {
     },
 
     getProduct(data) {
-        return axios.post('/product', {
-            productId : data,
-        });
+        return axios.get(`/product${data}`)
     },
 
     getCart(data) {
