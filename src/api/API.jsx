@@ -25,8 +25,6 @@ export default {
     },
 
     getCart() {
-        console.log(Cookies.get('token'));
-        
         return axios.get('/cart', {
             headers: {
                 'X-AUTH-TOKEN' : Cookies.get('token')
@@ -35,10 +33,19 @@ export default {
     },
 
     addCart(data) {
-        return axios.post(`/cart/${data}`, {
+        console.log(data);
+        console.log(Cookies.get('token'));
+        
+        return axios.post('/cart/product', 
+        {
             productId: data,
-            productOptionId: 1,
+            productOptionId: 5,
             quantity: 1
+        },
+        {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
         });
     },
 

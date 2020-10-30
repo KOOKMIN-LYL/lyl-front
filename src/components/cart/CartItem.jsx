@@ -14,15 +14,21 @@ const CartItem = ({ id, name, option, price, count, cartList, setCartList }) => 
         setCartList(cartList.filter(product => product.productId !== Number(e.target.name)))
     }
 
+    const quantutyHandle = () => {
+
+    }
+
     return (
         <tr>
-            <Link to={`product/${id}`}><td> <img src={img} width="90" alt=""></img></td></Link>
+            <td>
+                <Link to={`product/${id}`}><img src={img} width="90" alt=""></img></Link>
+            </td>
             <td>
                 {name}
                 <div>[옵션: {option}] </div>
             </td>
             <td>{numberFormat(price)} won</td>
-            <td><input value={count}></input><Button variant="dark" size="sm">변경</Button></td>
+            <td><input value={count} onChange={quantutyHandle}></input><Button variant="dark" size="sm">변경</Button></td>
             <td className="buttons">
                 <Button variant="dark" size="sm">주문하기</Button>
                 <Button variant="light" size="sm">관심상품등록</Button>

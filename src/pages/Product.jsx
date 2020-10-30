@@ -25,7 +25,7 @@ const Product = ({ match, history }) => {
 
         const addCart = async () => {
             await Api
-                .addCart(match.params)
+                .addCart(match.params.id)
                 .then((res) => {
                 });
         };
@@ -45,7 +45,7 @@ const Product = ({ match, history }) => {
         };
 
         getProduct();
-    }, [match.params])
+    }, [match.params.id])
 
     return (
         <>

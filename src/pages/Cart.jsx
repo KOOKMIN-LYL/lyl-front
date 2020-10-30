@@ -20,7 +20,7 @@ const Cart = () => {
                 name={cartItem.productName}
                 option={cartItem.checkedOption}
                 price={cartItem.productPrice}
-                count={cartItem.productCount}
+                count={cartItem.quantity}
                 cartList={cartList}
                 setCartList={setCartList}></CartItem>
         )
@@ -32,7 +32,7 @@ const Cart = () => {
                 .getCart()
                 .then((res) => {
                     console.log(res.data);
-                    //setCartList(res.data.cartList);
+                    setCartList(res.data.orderProducts);
                 });
         };
 
@@ -41,9 +41,13 @@ const Cart = () => {
 
     useEffect(() => {
         setTotalPrice(numberFormat(cartList.reduce((acc, cur) => {
-            return acc + cur.productPrice*cur.productCount;
+            return acc + cur.productPrice*cur.quantity;
         }, 0)))
     }, [setTotalPrice, cartList])
+
+    useEffect(() => {
+        
+    })
 
     return (
         <div className="cartC">
