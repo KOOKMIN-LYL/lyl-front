@@ -27,6 +27,7 @@ const Product = ({ match, history }) => {
             await Api
                 .addCart(match.params.id)
                 .then((res) => {
+                    console.log(res.data);
                 });
         };
 

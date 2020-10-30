@@ -9,6 +9,7 @@ import 'style/Header.css'
 const Header = () => {
     const [category, setCategory] = useState([]);
     const { isLogged, setIsLogged } = useContext(UserContext);
+    const [update, setUpdate] = useState(false);
 
     const makeCategory = category.map((category) => {
         return (
@@ -20,6 +21,7 @@ const Header = () => {
         Cookies.remove('isLogged');
         Cookies.remove('token');
         setIsLogged(false);
+        setUpdate(!update);
     }
 
     useEffect(() => {

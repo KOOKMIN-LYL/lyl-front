@@ -33,9 +33,6 @@ export default {
     },
 
     addCart(data) {
-        console.log(data);
-        console.log(Cookies.get('token'));
-        
         return axios.post('/cart/product', 
         {
             productId: data,
@@ -49,9 +46,17 @@ export default {
         });
     },
 
-    deleteCart(data) {
-        return axios.post('/cart', {
-            productId: data,
+    deleteCart(id) {
+        console.log(id);
+        
+        return axios.delete('/cart/product',
+        {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
+            data : {
+                orderProductId: id,
+            }
         });
     },
 

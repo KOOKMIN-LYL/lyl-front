@@ -15,8 +15,9 @@ const Cart = () => {
     const makeCartList = cartList.map((cartItem) => {
         return (
             <CartItem
-                key={cartItem.productId}
-                id={cartItem.productId}
+                key={cartItem.id}
+                cartId={cartItem.id}
+                productId={cartItem.productId}
                 name={cartItem.productName}
                 option={cartItem.checkedOption}
                 price={cartItem.productPrice}
@@ -31,7 +32,6 @@ const Cart = () => {
             await Api
                 .getCart()
                 .then((res) => {
-                    console.log(res.data);
                     setCartList(res.data.orderProducts);
                 });
         };
@@ -46,7 +46,7 @@ const Cart = () => {
     }, [setTotalPrice, cartList])
 
     useEffect(() => {
-        
+
     })
 
     return (
