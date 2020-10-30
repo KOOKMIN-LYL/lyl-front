@@ -9,6 +9,16 @@
     padding: 0.5rem;
 }
 
+.logout {
+    color: red;
+    padding: 0.5rem;
+}
+
+.logout:hover{
+    color: gray;
+    text-decoration: none;
+}
+
 .headerLink:hover{
     color: gray;
     text-decoration: none;

@@ -15,8 +15,6 @@ const Product = ({ match, history }) => {
         )
     });
 
-    console.log(match.params);
-
     const addCart = (e) => {
         e.preventDefault();
 
@@ -24,7 +22,6 @@ const Product = ({ match, history }) => {
             await Api
                 .addCart(match.params)
                 .then((res) => {
-                    console.log(res.data);
                 });
         };
 

@@ -8,16 +8,12 @@ import img from '1.jpg';
 const Order = () => {
     const [orderList, setOrderList] = useState([]);
 
-    console.log(orderList);
-
     useEffect(() => {
         const getOrder = async () => {
             await Api
                 .getOrder()
                 .then((res) => {
                     setOrderList(res.data.orderList);
-
-                    console.log(res.data);
                 });
         };
 

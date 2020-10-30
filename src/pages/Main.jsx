@@ -11,6 +11,7 @@ import Api from 'api/API';
 
 const Main = () => {
     const [mainImage, setMainImage] = useState([]);
+    const [isLogged, setIsLogged] = useState([]);
 
     const mainSettings = {
         dots: true,
@@ -33,13 +34,13 @@ const Main = () => {
         autoplaySpeed: 10000,
     };
 
-    // const makeMainImge = mainImage.map((product) => {
-    //     return (
-    //         <Link to={`product/${product.productId}`} key={product.productId}>
-    //             <img src={main1} alt=""></img>
-    //         </Link>
-    //     )
-    // })
+    const makeMainImge = mainImage.map((product) => {
+        return (
+            <Link to={`product/${product.productId}`} key={product.productId}>
+                <img src={main1} alt=""></img>
+            </Link>
+        )
+    })
 
     useEffect(() => {
         const getMainImage = async () => {
@@ -57,7 +58,7 @@ const Main = () => {
         <>
             <div className="mainImage">
                 <Slider {...mainSettings}>
-                    {/* {makeMainImge} */}
+                    {makeMainImge}
                 </Slider>
             </div>
             <div className="bestSeller">

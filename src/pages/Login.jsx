@@ -1,28 +1,31 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Api from 'api/API';
+import UserContext from 'context/UserContext';
 import Cookies from 'js-cookie';
 import 'style/Login.css';
 
-const Login = ({history}) => {
+const Login = ({ history }) => {
     const id = useRef();
     const password = useRef();
+    const { setIsLogged } = useContext(UserContext);
 
     const submitSignUp = async (e) => {
         e.preventDefault();
 
         const user = {
-            username: id.current.value,
-            password: password.current.value,
-            _csrf: Cookies.get('XSRF-TOKEN'),
+            'username': id.current.value,
+            'password': password.current.value
         };
-        
+
         await Api
             .login(user)
-            .then((res) => {
-                console.log(res.data);
-                history.push('/')
+            .then(res => {
+                Cookies.set('token',res.data);
+                Cookies.set('isLogged',true);
+                setIsLogged(true);
+                history.push('/');
             })
     }
 

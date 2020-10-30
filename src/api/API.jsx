@@ -4,9 +4,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8080';
 
 export default {
-
     login(data) {
-        console.log(data);
         return axios.post('/login', data);
     },
 
@@ -23,7 +21,7 @@ export default {
     },
 
     getProduct(data) {
-        return axios.get(`/product${data}`)
+        return axios.get(`/product/${data}`)
     },
 
     getCart(data) {
@@ -34,13 +32,13 @@ export default {
 
     addCart(data) {
         return axios.post('/addcart', {
-            productId : data,
+            productId: data,
         });
     },
 
     deleteCart(data) {
         return axios.post('/cart', {
-            productId : data,
+            productId: data,
         });
     },
 
