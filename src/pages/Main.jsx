@@ -34,31 +34,31 @@ const Main = () => {
         autoplaySpeed: 10000,
     };
 
-    const makeMainImge = mainImage.map((product) => {
-        return (
-            <Link to={`product/${product.productId}`} key={product.productId}>
-                <img src={main1} alt=""></img>
-            </Link>
-        )
-    })
+    // const makeMainImge = mainImage.map((product) => {
+    //     return (
+    //         <Link to={`product/${product.productId}`} key={product.productId}>
+    //             <img src={main1} alt=""></img>
+    //         </Link>
+    //     )
+    // })
 
-    useEffect(() => {
-        const getMainImage = async () => {
-            await Api
-                .getMainImage()
-                .then((res) => {
-                    setMainImage(res.data.products)
-                });
-        };
+    // useEffect(() => {
+    //     const getMainImage = async () => {
+    //         await Api
+    //             .getMainImage()
+    //             .then((res) => {
+    //                 setMainImage(res.data.products)
+    //             });
+    //     };
 
-        getMainImage();
-    }, [setMainImage])
+    //     getMainImage();
+    // }, [setMainImage])
 
     return (
         <>
             <div className="mainImage">
                 <Slider {...mainSettings}>
-                    {makeMainImge}
+                    {/* {makeMainImge} */}
                 </Slider>
             </div>
             <div className="bestSeller">

@@ -31,7 +31,8 @@ const Cart = () => {
             await Api
                 .getCart()
                 .then((res) => {
-                    setCartList(res.data.cartList);
+                    console.log(res.data);
+                    //setCartList(res.data.cartList);
                 });
         };
 

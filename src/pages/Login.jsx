@@ -22,6 +22,7 @@ const Login = ({ history }) => {
         await Api
             .login(user)
             .then(res => {
+                console.log(res.data);
                 Cookies.set('token',res.data);
                 Cookies.set('isLogged',true);
                 setIsLogged(true);

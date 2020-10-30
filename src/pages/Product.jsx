@@ -6,12 +6,17 @@ import img from '1.jpg';
 
 const Product = ({ match, history }) => {
     const [product, setProduct] = useState({
-        productOption: []
+        price: 0,
+        productOptionDetails: []
     });
 
-    const makeOption = product.productOption.map((option, key) => {
+    const numberFormat = (inputNumber) => {
+        return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    const makeOption = product.productOptionDetails.map((option, key) => {
         return (
-            <option key={key} value={option}>{option}</option>
+            <option key={option.id} value={option.option}>{option.option}</option>
         )
     });
 
@@ -33,7 +38,7 @@ const Product = ({ match, history }) => {
     useEffect(() => {
         const getProduct = async () => {
             await Api
-                .getProduct(match.params)
+                .getProduct(match.params.id)
                 .then((res) => {
                     setProduct(res.data);
                 });
@@ -51,13 +56,13 @@ const Product = ({ match, history }) => {
             </div>
             <div className="detailArea">
                 <div className="productName">
-                    <h4>{product.productName}</h4>
+                    <h4>{product.name}</h4>
                 </div>
                 <div className="productDetail">
                     <table>
                         <tbody>
                             <tr>
-                                <td className="price" colSpan="2">{`${product.productPrice} won`}</td>
+                                <td className="price" colSpan="2">{`${numberFormat(product.price)} won`}</td>
                             </tr>
                             {/* <tr>
                                 <th>제조사</th>
