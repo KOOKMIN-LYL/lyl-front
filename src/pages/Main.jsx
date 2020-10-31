@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick'
 
 import { Link } from 'react-router-dom';
 
 import 'style/Main.css';
 import img from '1.jpg';
-import main1 from 'main1.jpg';
-// import main2 from 'main2.jpg';
-import Api from 'api/API';
 
 const Main = () => {
-    const [mainImage, setMainImage] = useState([]);
-    const [isLogged, setIsLogged] = useState([]);
+    // const [mainImage, setMainImage] = useState([]);
 
     const mainSettings = {
         dots: true,

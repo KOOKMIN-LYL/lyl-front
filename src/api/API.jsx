@@ -46,17 +46,12 @@ export default {
         });
     },
 
-    deleteCart(id) {
-        console.log(id);
-        
-        return axios.delete('/cart/product',
+    deleteCart(data) {
+        return axios.delete(`/cart/product/${data}`,
         {
             headers: {
                 'X-AUTH-TOKEN' : Cookies.get('token')
             },
-            data : {
-                orderProductId: id,
-            }
         });
     },
 

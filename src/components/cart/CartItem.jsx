@@ -5,27 +5,27 @@ import Api from 'api/API';
 import 'style/Cart.css';
 import img from '1.jpg';
 
-const CartItem = ({ cartId, productId, name, option, price, count, cartList, setCartList }) => {
+const CartItem = ({ cartId, productId, name, option, price, count, update, setUpdate }) => {
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     const deleteItem = (e) => {
-        const deleteCart = async () => {
-            await Api
-                .deleteCart(e.target.name)
-                .then((res) => {
-                    console.log(res.data);
-                    //setCartList(res.data.orderProducts);
-                });
-        };
-    
-        deleteCart();
-        //setCartList(cartList.filter(product => product.productId !== Number(e.target.name)))
+        if (window.confirm("정말 삭제하시겠습니까??") == true) {
+            const id = e.target.name;
+
+            const deleteCart = async () => {
+                await Api
+                    .deleteCart(id)
+                    .then((res) => {
+                        setUpdate(!update);
+                    });
+            };
+            deleteCart();
+        }
     }
 
     const quantutyHandle = () => {
-
     }
 
     return (

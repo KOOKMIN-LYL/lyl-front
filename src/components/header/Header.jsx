@@ -8,7 +8,7 @@ import 'style/Header.css'
 
 const Header = () => {
     const [category, setCategory] = useState([]);
-    const { isLogged, setIsLogged } = useContext(UserContext);
+    const { setIsLogged } = useContext(UserContext);
     const [update, setUpdate] = useState(false);
 
     const makeCategory = category.map((category) => {

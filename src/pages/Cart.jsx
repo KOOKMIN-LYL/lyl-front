@@ -7,6 +7,7 @@ import 'style/Cart.css';
 const Cart = () => {
     const [cartList, setCartList] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [update, setUpdate] = useState(false);
 
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -22,8 +23,9 @@ const Cart = () => {
                 option={cartItem.checkedOption}
                 price={cartItem.productPrice}
                 count={cartItem.quantity}
-                cartList={cartList}
-                setCartList={setCartList}></CartItem>
+                update={update}
+                setUpdate={setUpdate}>
+                </CartItem>
         )
     })
 
@@ -37,7 +39,7 @@ const Cart = () => {
         };
 
         getCart();
-    }, [setCartList])
+    }, [setCartList, update])
 
     useEffect(() => {
         setTotalPrice(numberFormat(cartList.reduce((acc, cur) => {

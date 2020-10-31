@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button } from 'react-bootstrap'
 import 'style/Product.css'
 import Api from 'api/API';
 import img from '1.jpg';
+import Cookies from 'js-cookie';
 
 const Product = ({ match, history }) => {
     const [product, setProduct] = useState({
@@ -23,17 +24,37 @@ const Product = ({ match, history }) => {
     const addCart = (e) => {
         e.preventDefault();
 
-        const addCart = async () => {
-            await Api
-                .addCart(match.params.id)
-                .then((res) => {
-                    console.log(res.data);
-                });
-        };
+        if (!Cookies.get('isLogged')) {
+            alert("로그인이 필요합니다");
+            history.push('/login');
+        }
 
-        addCart();
+        else {
+            if (window.confirm("장바구니에 추가하시겠습니까??") == true) {
+                const addCart = async () => {
+                    await Api
+                        .addCart(match.params.id)
+                        .then((res) => {
+                        });
+                };
 
-        history.push('/cart')
+                addCart()
+                    .then(() => {
+                        history.push('/cart')
+                    });
+            }
+
+        }
+    }
+    const orderProduct = () => {
+        if (!Cookies.get('isLogged')) {
+            alert("로그인이 필요합니다");
+            history.push('/login');
+        }
+
+        else {
+
+        }
     }
 
     useEffect(() => {
@@ -95,9 +116,9 @@ const Product = ({ match, history }) => {
                     </table>
                 </div>
                 <div className="buttonArea">
-                    <Button variant="dark" className="darkBtn" block>BUY NOW</Button>
-                    <Button variant="secondary" className="greyBtn" onClick={addCart}>ADD TO CART</Button>
-                    <Button variant="secondary" className="greyBtn">WISHLIST</Button>
+                    <Button variant="dark" className="darkBtn" block onClick={orderProduct}>BUY NOW</Button>
+                    <Button variant="secondary" className="darkBtn" block onClick={addCart}>ADD TO CART</Button>
+                    {/* <Button variant="secondary" className="greyBtn">WISHLIST</Button> */}
                 </div>
             </div>
         </>
