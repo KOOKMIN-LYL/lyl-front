@@ -11,7 +11,7 @@ const CartItem = ({ cartId, productId, name, option, price, count, update, setUp
     }
 
     const deleteItem = (e) => {
-        if (window.confirm("정말 삭제하시겠습니까??") == true) {
+        if (window.confirm("정말 삭제하시겠습니까??") === true) {
             const id = e.target.name;
 
             const deleteCart = async () => {

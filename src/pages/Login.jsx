@@ -25,7 +25,7 @@ const Login = ({ history }) => {
                 Cookies.set('token',res.data);
                 Cookies.set('isLogged',true);
                 setIsLogged(true);
-                history.push('/');
+                history.goBack();
             })
     }
 

@@ -4,7 +4,7 @@ import Api from 'api/API';
 import CartItem from 'components/cart/CartItem';
 import 'style/Cart.css';
 
-const Cart = () => {
+const Cart = ({ history }) => {
     const [cartList, setCartList] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [update, setUpdate] = useState(false);
@@ -20,7 +20,7 @@ const Cart = () => {
                 cartId={cartItem.id}
                 productId={cartItem.productId}
                 name={cartItem.productName}
-                option={cartItem.checkedOption}
+                option={cartItem.productOptions}
                 price={cartItem.productPrice}
                 count={cartItem.quantity}
                 update={update}
@@ -28,6 +28,10 @@ const Cart = () => {
                 </CartItem>
         )
     })
+
+    const goMain = () => {
+        history.push('/')
+    }
 
     useEffect(() => {
         const getCart = async () => {
@@ -88,8 +92,8 @@ const Cart = () => {
             </div>
             <div className="orderBtn">
                 <Button variant="dark">전체상품주문</Button>
-                <Button variant="secondary">선택상품주문</Button>
-                <Button variant="light">쇼핑계속하기</Button>
+                {/* <Button variant="secondary">선택상품주문</Button> */}
+                <Button variant="light" onClick={goMain}>쇼핑계속하기</Button>
             </div>
         </div>
     );

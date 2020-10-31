@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap'
 import 'style/Product.css'
 import Api from 'api/API';
@@ -21,29 +21,40 @@ const Product = ({ match, history }) => {
         )
     });
 
+    let optionId = null;
+
+    const handleOption = (e) => {
+        if (e.target.value !== 'default') {
+            optionId = product.productOptionDetails.filter((option) => option.option === e.target.value)[0].id;
+        }
+        else {
+            optionId = null;
+        }
+    }
+
     const addCart = (e) => {
         e.preventDefault();
 
         if (!Cookies.get('isLogged')) {
-            alert("로그인이 필요합니다");
+            alert('로그인이 필요합니다');
             history.push('/login');
         }
-
+        else if (optionId === null) {
+            alert('옵션을 선택해주세요.');
+        }
         else {
-            if (window.confirm("장바구니에 추가하시겠습니까??") == true) {
+            if (window.confirm("장바구니에 추가하시겠습니까??") === true) {
                 const addCart = async () => {
                     await Api
-                        .addCart(match.params.id)
+                        .addCart(match.params.id, optionId)
                         .then((res) => {
                         });
                 };
-
                 addCart()
                     .then(() => {
                         history.push('/cart')
                     });
             }
-
         }
     }
     const orderProduct = () => {
@@ -51,7 +62,6 @@ const Product = ({ match, history }) => {
             alert("로그인이 필요합니다");
             history.push('/login');
         }
-
         else {
 
         }
@@ -106,8 +116,8 @@ const Product = ({ match, history }) => {
                         <tbody>
                             <tr>
                                 <th>옵션</th>
-                                <td><select>
-                                    <option value="">- [필수] 옵션을 선택해 주세요 -</option>
+                                <td><select onChange={handleOption}>
+                                    <option value="default">- [필수] 옵션을 선택해 주세요 -</option>
                                     <option value="**" disabled>-------------------</option>
                                     {makeOption}
                                 </select></td>

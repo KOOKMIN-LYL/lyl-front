@@ -32,11 +32,11 @@ export default {
         })
     },
 
-    addCart(data) {
+    addCart(pId, oId) {
         return axios.post('/cart/product', 
         {
-            productId: data,
-            productOptionId: 5,
+            productId: pId,
+            productOptionId: oId,
             quantity: 1
         },
         {
