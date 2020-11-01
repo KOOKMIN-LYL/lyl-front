@@ -32,12 +32,12 @@ export default {
         })
     },
 
-    addCart(pId, oId) {
+    addCart(pId, oId, quantity) {
         return axios.post('/cart/product', 
         {
             productId: pId,
             productOptionId: oId,
-            quantity: 1
+            quantity: quantity
         },
         {
             headers: {
@@ -55,10 +55,51 @@ export default {
         });
     },
 
-    getOrder(data) {
-        return axios.post('/order', {
-            usn: data
+    changeQuantity(cartId, pId, oId, quantity) {
+        return axios.put(`/cart/order/${cartId}`, 
+        {
+            productId: pId,
+            productOptionId: oId,
+            quantity: quantity
+        },
+        {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
         });
     },
 
+    buyProduct(pId, oId, quantity) {
+        return axios.post('/order/product', 
+        {
+            productId: pId,
+            productOptionId: oId,
+            quantity: quantity
+        },
+        {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
+        });
+    },
+
+    buyCart(product) {
+        return axios.post('/cart/order', 
+        {  
+            "orderInfos" : product 
+        },
+        {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
+        });
+    },
+
+    getOrder(data) {
+        return axios.get(`/order/${data}`, {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
+        })
+    },
 };

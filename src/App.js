@@ -18,7 +18,7 @@ function App() {
             <Route exact path='/category/:id' component={Category} />
             <Route exact path='/product/:id' component={Product} />
             <Route exact path='/cart' component={Cart} />
-            <Route exact path='/order' component={Order} />
+            <Route exact path='/order/:id' component={Order} />
           </div>
           <Route exact path='/' component={Main} />
         </UserProvider>

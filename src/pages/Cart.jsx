@@ -6,6 +6,7 @@ import 'style/Cart.css';
 
 const Cart = ({ history }) => {
     const [cartList, setCartList] = useState([]);
+    const [orderId, setOrderId] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [update, setUpdate] = useState(false);
 
@@ -17,17 +18,44 @@ const Cart = ({ history }) => {
         return (
             <CartItem
                 key={cartItem.id}
+                orderId={orderId}
                 cartId={cartItem.id}
                 productId={cartItem.productId}
                 name={cartItem.productName}
+                optionId={cartItem.productOptionId}
                 option={cartItem.productOptions}
                 price={cartItem.productPrice}
-                count={cartItem.quantity}
+                quantity={cartItem.quantity}
                 update={update}
                 setUpdate={setUpdate}>
-                </CartItem>
+            </CartItem>
         )
     })
+
+    const orderAll = (e) => {
+        e.preventDefault();
+        if (window.confirm("상품을 주문하시겠습니까??") === true) {
+
+            const product = cartList.map((cartItem) => {
+                return (
+                    {
+                        productId: cartItem.productId,
+                        productOptionId: cartItem.productOptionId,
+                        quantity: cartItem.quantity
+                    }
+                )
+            })
+
+            const buyCart = async () => {
+                await Api
+                    .buyCart(product)
+                    .then((res) => {
+                        history.push(`/order/${res.data}`);
+                    });
+            };
+            buyCart();
+        }
+    }
 
     const goMain = () => {
         history.push('/')
@@ -38,6 +66,7 @@ const Cart = ({ history }) => {
             await Api
                 .getCart()
                 .then((res) => {
+                    setOrderId(res.data.id);
                     setCartList(res.data.orderProducts);
                 });
         };
@@ -47,7 +76,7 @@ const Cart = ({ history }) => {
 
     useEffect(() => {
         setTotalPrice(numberFormat(cartList.reduce((acc, cur) => {
-            return acc + cur.productPrice*cur.quantity;
+            return acc + cur.productPrice * cur.quantity;
         }, 0)))
     }, [setTotalPrice, cartList])
 
@@ -91,7 +120,7 @@ const Cart = ({ history }) => {
                 </table>
             </div>
             <div className="orderBtn">
-                <Button variant="dark">전체상품주문</Button>
+                <Button variant="dark" onClick={orderAll}>전체상품주문</Button>
                 {/* <Button variant="secondary">선택상품주문</Button> */}
                 <Button variant="light" onClick={goMain}>쇼핑계속하기</Button>
             </div>

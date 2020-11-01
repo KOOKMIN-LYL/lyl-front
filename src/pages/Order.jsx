@@ -1,24 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-
+import OrderItem from 'components/order/OrderItem';
 import Api from 'api/API';
 import 'style/Order.css';
-import img from '1.jpg';
 
-const Order = () => {
+const Order = ({ match }) => {
     const [orderList, setOrderList] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    console.log(orderList);
+    
+    const numberFormat = (inputNumber) => {
+        return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    
+    const makeOrderList = orderList.map((orderItem) => {
+        return (
+            <OrderItem
+                key={orderItem.id}
+                productId={orderItem.productId}
+                name={orderItem.productName}
+                option={orderItem.productOptions}
+                price={orderItem.productPrice}
+                quantity={orderItem.quantity}
+            >
+            </OrderItem>
+        )
+    })
 
     useEffect(() => {
         const getOrder = async () => {
             await Api
-                .getOrder()
+                .getOrder(match.params.id)
                 .then((res) => {
-                    setOrderList(res.data.orderList);
+                    setOrderList(res.data.orderProducts);
                 });
         };
 
         getOrder();
-    }, [])
+    }, [match.params.id])
+
+    useEffect(() => {
+        setTotalPrice(numberFormat(orderList.reduce((acc, cur) => {
+            return acc + cur.productPrice*cur.quantity;
+        }, 0)))
+    }, [setTotalPrice, orderList])
 
     return (
         <>
@@ -37,15 +63,20 @@ const Order = () => {
                             </tr>
                         </thead>
                         <tbody>
+                            {makeOrderList}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="totalPrice">
+                    <table border="1">
+                        <thead>
                             <tr>
-                                <td> <img src={img} width="90" alt=""></img></td>
-                                <td>
-                                    SACRED HEART PENDANT
-                                    <div>[옵션: 전체 실버/marina 2.4mm 45cm (+30,000)] </div>
-                                </td>
-                                <td>159,000 won</td>
-                                <td>1</td>
-                                <td>159,000 won</td>
+                                <th>결제예정금액</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{totalPrice} won</td>
                             </tr>
                         </tbody>
                     </table>

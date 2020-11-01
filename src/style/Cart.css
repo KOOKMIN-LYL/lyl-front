@@ -87,3 +87,8 @@
 .orderBtn .btn-light {
     border: 1px solid #777;
 }
+
+.input {
+    width: 50px !important;
+    height: 30px !important;
+}
