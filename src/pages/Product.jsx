@@ -82,7 +82,6 @@ const Product = ({ match, history }) => {
         }
         else {
             if (window.confirm("장바구니에 추가하시겠습니까??") === true) {
-                console.log(Number(count));
                 const addCart = async () => {
                     await Api
                         .addCart(match.params.id, optionId, Number(count))

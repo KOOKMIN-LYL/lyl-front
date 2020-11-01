@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import Api from 'api/API';
 import 'style/Cart.css';
 import img from '1.jpg';
 

@@ -34,7 +34,11 @@ const Cart = ({ history }) => {
 
     const orderAll = (e) => {
         e.preventDefault();
-        if (window.confirm("상품을 주문하시겠습니까??") === true) {
+
+        if (cartList[0] === undefined) {
+            alert('주문할 상품이 없습니다.')
+        }
+        else if (window.confirm("상품을 주문하시겠습니까??") === true) {
 
             const product = cartList.map((cartItem) => {
                 return (

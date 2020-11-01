@@ -6,9 +6,14 @@ import 'style/Order.css';
 
 const Order = ({ match }) => {
     const [orderList, setOrderList] = useState([]);
+    const [user, setUser] = useState({});
+    const [receiver, setReceiver] = useState({
+        name : '',
+        address : '',
+        phone : '',
+        email : '',
+    });
     const [totalPrice, setTotalPrice] = useState(0);
-
-    console.log(orderList);
     
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -28,6 +33,34 @@ const Order = ({ match }) => {
         )
     })
 
+    const same = () => {
+        setReceiver(user);
+    }
+
+    const handleName = (e) => {
+        setReceiver({...receiver, 
+            name : e.target.value,
+        });
+    }
+
+    const handleAddress = (e) => {
+        setReceiver({...receiver, 
+            address : e.target.value,
+        });
+    }
+
+    const handlePhone = (e) => {
+        setReceiver({...receiver, 
+            phone : e.target.value,
+        });
+    }
+
+    const handleEmail = (e) => {
+        setReceiver({...receiver, 
+            email : e.target.value,
+        });
+    }
+
     useEffect(() => {
         const getOrder = async () => {
             await Api
@@ -39,6 +72,18 @@ const Order = ({ match }) => {
 
         getOrder();
     }, [match.params.id])
+
+    useEffect(() => {
+        const getUser = async () => {
+            await Api
+                .getUser()
+                .then((res) => {
+                    setUser(res.data)
+                });
+        };
+
+        getUser();
+    }, [setUser])
 
     useEffect(() => {
         setTotalPrice(numberFormat(orderList.reduce((acc, cur) => {
@@ -88,43 +133,43 @@ const Order = ({ match }) => {
                         <tbody>
                             <tr>
                                 <th>주문하시는 분</th>
-                                <td><input type="text"></input></td>
+                                <td>{user.name}</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="password"></input></td>
+                                <td>{user.address}</td>
                             </tr>
                             <tr>
                                 <th>휴대전화</th>
-                                <td><input type="password"></input></td>
+                                <td>{user.phone}</td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text"></input></td>
+                                <td>{user.email}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div className="orderInfo">
-                    배송 정보
+                    배송 정보 <Button size="sm" variant="dark" onClick={same}>주문 정보와 동일</Button>
                     <table border="1">
                         <tbody>
                             <tr>
                                 <th>주문하시는 분</th>
-                                <td><input type="text"></input></td>
+                                <td><input type="text" value={receiver.name} onChange={handleName}></input></td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="password"></input></td>
+                                <td><input type="text" value={receiver.address} onChange={handleAddress}></input></td>
                             </tr>
                             <tr>
                                 <th>휴대전화</th>
-                                <td><input type="password"></input></td>
+                                <td><input type="text" value={receiver.phone} onChange={handlePhone}></input></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text"></input></td>
+                                <td><input type="text" value={receiver.email} onChange={handleEmail}></input></td>
                             </tr>
                         </tbody>
                     </table>

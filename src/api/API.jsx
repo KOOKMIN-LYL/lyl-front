@@ -102,4 +102,12 @@ export default {
             },
         })
     },
+
+    getUser() {
+        return axios.get('/member/info', {
+            headers: {
+                'X-AUTH-TOKEN' : Cookies.get('token')
+            },
+        })
+    },
 };
