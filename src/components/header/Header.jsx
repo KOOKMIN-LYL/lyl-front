@@ -46,7 +46,7 @@ const Header = () => {
                     </Nav>
                     <Nav className="myList">
                         <Link to="/cart" className="headerLink">CART</Link>
-                        <Link to="/" className="headerLink">MYPAGE</Link>
+                        <Link to="/mypage" className="headerLink">MYPAGE</Link>
                         <Link to="/" className="logout" onClick={logout}>LOGOUT</Link>
                     </Nav>
                 </Navbar>

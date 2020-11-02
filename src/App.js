@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import UserProvider from 'provider/UserProvider';
-import { Login, Signup, Category, Product, Cart, Order, Main } from 'pages';
+import { Login, Signup, Category, Product, Cart, Order, Main, MyPage } from 'pages';
 import Header from 'components/header/Header'
 import 'style/App.css'
 
@@ -19,6 +19,7 @@ function App() {
             <Route exact path='/product/:id' component={Product} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/order/:id' component={Order} />
+            <Route exact path='/mypage' component={MyPage} />
           </div>
           <Route exact path='/' component={Main} />
         </UserProvider>

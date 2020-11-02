@@ -11,7 +11,7 @@ const Product = ({ match, history }) => {
         productOptionDetails: []
     });
     const [optionId, setOptionId] = useState(null);
-    const [count, setCount] = useState('');
+    const [count, setCount] = useState('1');
 
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -153,7 +153,7 @@ const Product = ({ match, history }) => {
                             </tr>
                             <tr>
                                 <th>수량</th>
-                                <td><input type='number' min='0' value={count} onChange={quantutyHandle}></input></td>
+                                <td><input type='number' min='1' value={count} onChange={quantutyHandle}></input></td>
                             </tr>
                         </tbody>
                     </table>

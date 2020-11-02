@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import Api from 'api/API';
 import 'style/Signup.css';
 
-const Login = ({ history }) => {
+const MyPage = ({ history }) => {
     const [user, setUser] = useState({
         id: '',
         password: '',
@@ -54,10 +54,23 @@ const Login = ({ history }) => {
         }
     }
 
+    useEffect(() => {
+        const getUser = async () => {
+            await Api
+                .getUser()
+                .then((res) => {
+                    console.log(res.data);
+                    setUser(res.data)
+                });
+        };
+
+        getUser();
+    }, [setUser])
+
     return (
         <>
             <div className="signupC">
-                <h5 className="signupTitle">회원가입</h5>
+                <h5 className="signupTitle">내 정보</h5>
                 <form>
                     <table border="1">
                         <tbody>
@@ -92,11 +105,11 @@ const Login = ({ history }) => {
                         </tbody>
                     </table>
                     <div className="signupBtn">
-                        <Button variant="dark" onClick={signup}>회원가입</Button>
+                        <Button variant="dark" onClick={signup}>정보 수정하기</Button>
                     </div>
                 </form>
             </div>
         </>
     );
 };
-export default Login;
+export default MyPage;

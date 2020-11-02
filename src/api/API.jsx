@@ -4,6 +4,10 @@ import Cookies from 'js-cookie';
 axios.defaults.baseURL = 'http://localhost:8080';
 
 export default {
+    join(data) {
+        return axios.post('/member/join', data);
+    },
+    
     login(data) {
         return axios.post('/login', data);
     },

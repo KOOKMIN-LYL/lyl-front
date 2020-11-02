@@ -22,12 +22,16 @@ const Login = ({ history }) => {
         await Api
             .login(user)
             .then(res => {
+                console.log(res);
                 Cookies.set('token',res.data);
                 Cookies.set('isLogged',true);
                 setIsLogged(true);
-                history.goBack();
+                history.push('/');
             })
-    }
+            .catch(err => {
+                alert('아이디 또는 비밀번호가 일치하지 않습니다.')
+            })
+    }   
 
     return (
         <>
