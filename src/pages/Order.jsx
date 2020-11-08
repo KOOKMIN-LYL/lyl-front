@@ -8,17 +8,17 @@ const Order = ({ match }) => {
     const [orderList, setOrderList] = useState([]);
     const [user, setUser] = useState({});
     const [receiver, setReceiver] = useState({
-        name : '',
-        address : '',
-        phone : '',
-        email : '',
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
     });
     const [totalPrice, setTotalPrice] = useState(0);
-    
+
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    
+
     const makeOrderList = orderList.map((orderItem) => {
         return (
             <OrderItem
@@ -38,26 +38,30 @@ const Order = ({ match }) => {
     }
 
     const handleName = (e) => {
-        setReceiver({...receiver, 
-            name : e.target.value,
+        setReceiver({
+            ...receiver,
+            name: e.target.value,
         });
     }
 
     const handleAddress = (e) => {
-        setReceiver({...receiver, 
-            address : e.target.value,
+        setReceiver({
+            ...receiver,
+            address: e.target.value,
         });
     }
 
     const handlePhone = (e) => {
-        setReceiver({...receiver, 
-            phone : e.target.value,
+        setReceiver({
+            ...receiver,
+            phone: e.target.value,
         });
     }
 
     const handleEmail = (e) => {
-        setReceiver({...receiver, 
-            email : e.target.value,
+        setReceiver({
+            ...receiver,
+            email: e.target.value,
         });
     }
 
@@ -87,7 +91,7 @@ const Order = ({ match }) => {
 
     useEffect(() => {
         setTotalPrice(numberFormat(orderList.reduce((acc, cur) => {
-            return acc + cur.productPrice*cur.quantity;
+            return acc + cur.productPrice * cur.quantity;
         }, 0)))
     }, [setTotalPrice, orderList])
 

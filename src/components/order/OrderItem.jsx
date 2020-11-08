@@ -19,7 +19,7 @@ const OrderItem = ({ productId, name, option, price, quantity }) => {
             </td>
             <td>{numberFormat(price)} won</td>
             <td>{quantity}</td>
-            <td>{numberFormat(quantity*price)} won</td>
+            <td>{numberFormat(quantity * price)} won</td>
         </tr>
     );
 };

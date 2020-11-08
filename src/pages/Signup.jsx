@@ -33,7 +33,7 @@ const Login = ({ history }) => {
     const signup = (e) => {
         e.preventDefault();
 
-        if (user.id, user.password, user.name, user.phone, user.email === '') {
+        if (user.id === '' || user.password === '' || user.name === '' || user.phone === '' || user.email === '') {
             alert('입력하지 않은 항목이있습니다.')
         }
 

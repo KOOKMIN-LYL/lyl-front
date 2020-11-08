@@ -2,7 +2,15 @@
     width: 100%;
 }
 
+.sliderItem {
+    display: inline-block;
+    width: 300px;
+    margin: 100px;
+}
+
 .bestSeller {
+    max-width: 1200px;
+    margin: 0 auto;
     margin-top: 50px;
     text-align: center;
 }
@@ -10,9 +18,13 @@
 .bestSellerItem {
     display: inline-block;
     width: 300px;
-    margin: 20px;
 }
 
 .productLink {
     color: black !important;
+}
+
+.mainHeader {
+    font-size: 38px;
+    text-align: left;
 }

@@ -5,51 +5,38 @@ import 'style/Signup.css';
 
 const MyPage = ({ history }) => {
     const [user, setUser] = useState({
-        id: '',
+        memberId: '',
         password: '',
         name: '',
         address: '',
         phone: '',
         email: '',
     });
-    const [checkPW, setCheckPW] = useState({
-        password: ''
-    });
 
     const handleInput = (e) => {
         setUser({
             ...user,
             [e.target.name]: e.target.value,
-        });
+        })
     }
 
-    const handlePW = (e) => {
-        setCheckPW({
-            ...checkPW,
-            [e.target.name]: e.target.value,
-        });
-    }
-
-    const signup = (e) => {
+    const putUser = (e) => {
         e.preventDefault();
 
-        if (user.id, user.password, user.name, user.phone, user.email === '') {
+        if (user.name === '' || user.phone === '' || user.email === '') {
             alert('입력하지 않은 항목이있습니다.')
         }
 
-        else if (user.password !== checkPW.password) {
-            alert('비빌번호가 일치하지 않습니다.')
-        }
         else {
-            if (window.confirm("회원가입을 하시겠습니까??") === true) {
-                const join = async () => {
-                    await Api
-                        .join(user)
-                        .then((res) => {
-                            history.push('/');
-                        });
-                };
-                join()
+            if (window.confirm("정보를 수정하시겠습니까??") === true) {
+                // const join = async () => {
+                //     await Api
+                //         .join(user)
+                //         .then((res) => {
+                //             history.push('/');
+                //         });
+                // };
+                // join()
             }
         }
     }
@@ -59,7 +46,6 @@ const MyPage = ({ history }) => {
             await Api
                 .getUser()
                 .then((res) => {
-                    console.log(res.data);
                     setUser(res.data)
                 });
         };
@@ -76,16 +62,16 @@ const MyPage = ({ history }) => {
                         <tbody>
                             <tr>
                                 <th>아이디</th>
-                                <td><input type="text" name="id" value={user.id} onChange={handleInput}></input><div className="nextInput">(영문소문자/숫자, 4~16자)</div></td>
+                                <td>{user.memberId}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th>비밀번호</th>
                                 <td><input type="password" name="password" value={user.password} onChange={handleInput}></input><div className="nextInput">(영문소문자/숫자, 4~16자)</div></td>
                             </tr>
                             <tr>
                                 <th>비밀번호 확인</th>
                                 <td><input type="password" name="password" value={checkPW.password} onChange={handlePW}></input><div className="nextInput">(영문소문자/숫자, 4~16자)</div></td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <th>이름</th>
                                 <td><input type="text" name="name" value={user.name} onChange={handleInput}></input></td>
@@ -105,7 +91,7 @@ const MyPage = ({ history }) => {
                         </tbody>
                     </table>
                     <div className="signupBtn">
-                        <Button variant="dark" onClick={signup}>정보 수정하기</Button>
+                        <Button variant="dark" onClick={putUser}>정보 수정하기</Button>
                     </div>
                 </form>
             </div>

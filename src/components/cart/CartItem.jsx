@@ -3,9 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Api from 'api/API';
 import 'style/Cart.css';
-import img from '1.jpg';
 
-const CartItem = ({ history, orderId, cartId, productId, name, optionId, option, price, quantity, update, setUpdate }) => {
+const CartItem = ({ history, orderId, cartId, productId, name, img, optionId, option, price, quantity, update, setUpdate }) => {
     const [count, setCount] = useState(quantity);
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -15,19 +14,19 @@ const CartItem = ({ history, orderId, cartId, productId, name, optionId, option,
         e.preventDefault();
 
         const product = [
-            { 
-              productId : productId, 
-              productOptionId:optionId, 
-              quantity: quantity
-             }
-         ]
+            {
+                productId: productId,
+                productOptionId: optionId,
+                quantity: quantity
+            }
+        ]
 
         const buyCart = async () => {
             await Api
                 .buyCart(product)
                 .then((res) => {
                     history.push(`/order/${res.data}`);
-                });
+                })
         };
         buyCart();
     }
@@ -64,7 +63,7 @@ const CartItem = ({ history, orderId, cartId, productId, name, optionId, option,
             };
             changeQuantity()
                 .then(alert('변경되었습니다.'));
-            
+
         }
     }
 

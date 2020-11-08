@@ -8,7 +8,7 @@ import img from '1.jpg';
 
 const Category = ({ match }) => {
     const [productList, setProductList] = useState([]);
-    const [totalPages, setTotalPages] = useState(0); 
+    const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [startPage, setStartPage] = useState(1);
     const [finPage, setFinPage] = useState(5);
@@ -37,7 +37,7 @@ const Category = ({ match }) => {
         return (
             <Link to={`/product/${product.productNumber}`} className="productLink" key={product.productNumber}>
                 <li className="box">
-                    <img src={img} width="280px" alt=""></img>
+                    <img src={product.imagePath} width="292px" height="310px" alt=""></img>
                     <div className="about">
                         <p className="name">{product.name}</p>
                         <p className="price">{numberFormat(product.price)} won</p>

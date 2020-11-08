@@ -112,7 +112,7 @@ const Product = ({ match, history }) => {
         <>
             <div className="imgArea">
                 <div className="img">
-                    <img src={img} alt=""></img>
+                    <img src={product.imagePath} width="400px" height="420px" alt=""></img>
                 </div>
             </div>
             <div className="detailArea">

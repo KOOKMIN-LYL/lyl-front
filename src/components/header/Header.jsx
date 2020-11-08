@@ -18,10 +18,12 @@ const Header = () => {
     })
 
     const logout = () => {
-        Cookies.remove('isLogged');
-        Cookies.remove('token');
-        setIsLogged(false);
-        setUpdate(!update);
+        if (window.confirm("로그아웃하시겠습니까??") === true) {
+            Cookies.remove('isLogged');
+            Cookies.remove('token');
+            setIsLogged(false);
+            setUpdate(!update);
+        }
     }
 
     useEffect(() => {

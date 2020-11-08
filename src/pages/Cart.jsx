@@ -21,6 +21,7 @@ const Cart = ({ history }) => {
                 orderId={orderId}
                 cartId={cartItem.id}
                 productId={cartItem.productId}
+                img={cartItem.imagePath}
                 name={cartItem.productName}
                 optionId={cartItem.productOptionId}
                 option={cartItem.productOptions}
@@ -70,6 +71,7 @@ const Cart = ({ history }) => {
             await Api
                 .getCart()
                 .then((res) => {
+                    console.log(res.data);
                     setOrderId(res.data.id);
                     setCartList(res.data.orderProducts);
                 });
