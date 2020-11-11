@@ -114,4 +114,12 @@ export default {
             },
         })
     },
+
+    getAllOrder(data) {
+        return axios.get('/order', {
+            headers: {
+                'X-AUTH-TOKEN': Cookies.get('token')
+            },
+        })
+    },
 };

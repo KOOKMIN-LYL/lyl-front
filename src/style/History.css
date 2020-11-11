@@ -1,0 +1,32 @@
+.historyC {
+    font-size: 12px;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 900px;
+    width: 94%;
+}
+
+.historyTitle {
+    text-align: center;
+    padding: 90px 0 50px 0;
+    font-weight: bold;
+}
+
+.historyProducts table {
+    border: 1px solid #d7d5d5;
+    width: 100%;
+    color: #353535;
+    text-align: center;
+}
+
+.historyProducts thead th {
+    padding: 11px 0 10px;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    background: #fbfafa;
+    text-align: center;
+}
+
+.historyProducts tbody td {
+    padding: 8px 10px 7px;
+}

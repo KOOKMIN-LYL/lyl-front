@@ -86,10 +86,6 @@ const Cart = ({ history }) => {
         }, 0)))
     }, [setTotalPrice, cartList])
 
-    useEffect(() => {
-
-    })
-
     return (
         <div className="cartC">
             <h5 className="cartTitle">장바구니</h5>
