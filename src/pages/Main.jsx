@@ -102,7 +102,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -111,7 +111,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -120,7 +120,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -129,7 +129,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -138,7 +138,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -147,7 +147,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -156,7 +156,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>
@@ -165,7 +165,7 @@ const Main = () => {
                     <li className="box">
                         <Link to="product/1" className="productLink">
                             <div className="bestSellerItem">
-                                <img src={img} width="300px" alt=""></img>
+                                <img src={img} width="100%" alt=""></img>
                                 <h5>MARIA KROSS</h5>
                                 <h5>99,000 won</h5>
                             </div>

@@ -71,7 +71,6 @@ const Cart = ({ history }) => {
             await Api
                 .getCart()
                 .then((res) => {
-                    console.log(res.data);
                     setOrderId(res.data.id);
                     setCartList(res.data.orderProducts);
                 });

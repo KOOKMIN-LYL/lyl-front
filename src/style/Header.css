@@ -28,35 +28,25 @@
     .mr-auto {
         margin-left: 3rem;
     }
+
+    .footer {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 1200px;
+        height: 300px;
+        margin-top: 50px;
+    }
 }
 
 @media (max-width: 480px) {
     .header {
-        width: 100%;
-        background-color: rgba(240,240,240,0.9);
+        position: relative;
     }
-    
-    .headerLink {
-        color: black;
-        padding: 0.5rem;
-    }
-    
-    .logout {
-        color: red;
-        padding: 0.5rem;
-    }
-    
-    .logout:hover{
-        color: gray;
-        text-decoration: none;
-    }
-    
-    .headerLink:hover{
-        color: gray;
-        text-decoration: none;
-    }
-    
     .mr-auto {
-        margin-left: 3rem;
+        display: none;
+    }
+
+    .myList {
+        display: none;
     }
 }

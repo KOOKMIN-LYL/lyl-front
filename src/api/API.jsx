@@ -116,7 +116,7 @@ export default {
     },
 
     getAllOrder(data) {
-        return axios.get('/order', {
+        return axios.get('/order?orderType=ORDER', {
             headers: {
                 'X-AUTH-TOKEN': Cookies.get('token')
             },

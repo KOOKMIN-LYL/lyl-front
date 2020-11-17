@@ -2,8 +2,9 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import UserProvider from 'provider/UserProvider';
-import { Login, Signup, Category, Product, Cart, Order, Main, Profile, Mypage, History } from 'pages';
+import { Login, Signup, Category, Product, Cart, Order, Main, Profile, MyPage, History } from 'pages';
 import Header from 'components/header/Header'
+import Footer from 'components/header/Footer'
 import 'style/App.css'
 
 function App() {
@@ -20,10 +21,11 @@ function App() {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/order/:id' component={Order} />
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/mypage' component={Mypage} />
+            <Route exact path='/mypage' component={MyPage} />
             <Route exact path='/history' component={History} />
           </div>
           <Route exact path='/' component={Main} />
+          <Footer></Footer>
         </UserProvider>
       </BrowserRouter>
     </>
