@@ -5,3 +5,13 @@
     max-width: 1200px;
     min-width: 900px;
 }
+
+@media (max-width: 480px) {
+    .content {
+        width: 100%; 
+        margin: 0 auto;
+        padding-top: 88px;
+        max-width: 480px;
+        min-width: 480px;
+    }
+}

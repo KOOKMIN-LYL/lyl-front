@@ -1,34 +1,62 @@
-.header {
-    width: 100%;
-    padding: 0.5rem 6rem;
-    background-color: rgba(240,240,240,0.9);
+@media (min-width: 481px) {
+    .header {
+        width: 100%;
+        padding: 0.5rem 6rem;
+        background-color: rgba(240,240,240,0.9);
+    }
+    
+    .headerLink {
+        color: black;
+        padding: 0.5rem;
+    }
+    
+    .logout {
+        color: red;
+        padding: 0.5rem;
+    }
+    
+    .logout:hover{
+        color: gray;
+        text-decoration: none;
+    }
+    
+    .headerLink:hover{
+        color: gray;
+        text-decoration: none;
+    }
+    
+    .mr-auto {
+        margin-left: 3rem;
+    }
 }
 
-.headerLink {
-    color: black;
-    padding: 0.5rem;
+@media (max-width: 480px) {
+    .header {
+        width: 100%;
+        background-color: rgba(240,240,240,0.9);
+    }
+    
+    .headerLink {
+        color: black;
+        padding: 0.5rem;
+    }
+    
+    .logout {
+        color: red;
+        padding: 0.5rem;
+    }
+    
+    .logout:hover{
+        color: gray;
+        text-decoration: none;
+    }
+    
+    .headerLink:hover{
+        color: gray;
+        text-decoration: none;
+    }
+    
+    .mr-auto {
+        margin-left: 3rem;
+    }
 }
-
-.logout {
-    color: red;
-    padding: 0.5rem;
-}
-
-.logout:hover{
-    color: gray;
-    text-decoration: none;
-}
-
-.headerLink:hover{
-    color: gray;
-    text-decoration: none;
-}
-
-.mr-auto {
-    margin-left: 3rem;
-}
-
-/* 
-.myList {
-    margin-right: 50px;
-} */
