@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'style/Cart.css';
-import img from '1.jpg';
 
-const OrderItem = ({ productId, name, option, price, quantity }) => {
+const OrderItem = ({ productId, name, option, price, quantity, img }) => {
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }

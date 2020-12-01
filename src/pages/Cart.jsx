@@ -91,18 +91,21 @@ const Cart = ({ history }) => {
                     Cookies.remove('token');
                     setIsLogged(false);
                     setUpdate(!update);
-                    history.push('/')
                 })
         };
 
         getCart();
-    }, [setCartList, update])
+    }, [setCartList, update, setIsLogged, history])
 
     useEffect(() => {
         setTotalPrice(numberFormat(cartList.reduce((acc, cur) => {
             return acc + cur.productPrice * cur.quantity;
         }, 0)))
     }, [setTotalPrice, cartList])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
     return (
         <div className="cartC">

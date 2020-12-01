@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import OrderItem from 'components/order/OrderItem';
 import Api from 'api/API';
 import 'style/Order.css';
 
-const Order = ({ match, history }) => {
+const HistoryDetail = ({ match }) => {
     const [orderList, setOrderList] = useState([]);
     const [user, setUser] = useState({});
-    const [receiver, setReceiver] = useState({
-        name: '',
-        address: '',
-        phone: '',
-        email: '',
-    });
     const [totalPrice, setTotalPrice] = useState(0);
+    const [receiver, setReceiver] = useState({})
 
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -34,82 +28,12 @@ const Order = ({ match, history }) => {
         )
     })
 
-    const same = () => {
-        setReceiver(user);
-    }
-
-    const handleName = (e) => {
-        setReceiver({
-            ...receiver,
-            name: e.target.value,
-        });
-    }
-
-    const handleAddress = (e) => {
-        setReceiver({
-            ...receiver,
-            address: e.target.value,
-        });
-    }
-
-    const handlePhone = (e) => {
-        setReceiver({
-            ...receiver,
-            phone: e.target.value,
-        });
-    }
-
-    const handleEmail = (e) => {
-        setReceiver({
-            ...receiver,
-            email: e.target.value,
-        });
-    }
-
-    const order = (e) => {
-        const sender = {
-            name: user.name,
-            address: user.address,
-            phone: user.phone,
-            email: user.email,
-            userType: "SENDER",
-        }
-
-        const receiverData = {
-            name: receiver.name,
-            address: receiver.address,
-            phone: receiver.phone,
-            email: receiver.email,
-            userType: "RECEIVER",
-        }
-
-        const data = {
-            request: "dd",
-            orderDeliveryInfos: [sender, receiverData]
-        }
-
-        if (receiver.name === '' || receiver.phone === '' || receiver.email === '' || receiver.address === '') {
-            alert('입력하지 않은 항목이있습니다.')
-        }
-
-        else if (window.confirm("결제하시겠습니까??") === true) {
-            const purchase = async () => {
-                await Api
-                    .purchase(data, match.params.id)
-                    .then((res) => {
-                    });
-            };
-
-            purchase();
-            history.push('/')
-        }
-    }
-
     useEffect(() => {
         const getOrder = async () => {
             await Api
                 .getOrder(match.params.id)
                 .then((res) => {
+                    setReceiver(res.data.orderDeliveryInfos[1]);
                     setOrderList(res.data.orderProducts);
                 });
         };
@@ -135,10 +59,15 @@ const Order = ({ match, history }) => {
         }, 0)))
     }, [setTotalPrice, orderList])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+
     return (
         <>
             <div className="orderC">
-                <h5 className="orderTitle">주문서 작성</h5>
+                <h5 className="orderTitle">주문 내역</h5>
                 <div className="orderProducts">
                     <table>
                         <thead>
@@ -160,7 +89,7 @@ const Order = ({ match, history }) => {
                     <table border="1">
                         <thead>
                             <tr>
-                                <th>결제예정금액</th>
+                                <th>결제한 금액</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -196,33 +125,30 @@ const Order = ({ match, history }) => {
                 </div>
 
                 <div className="orderInfo">
-                    배송 정보 <Button size="sm" variant="dark" onClick={same} className="same">주문 정보와 동일</Button>
+                    배송 정보
                     <table border="1">
                         <tbody>
                             <tr>
                                 <th>배송 받으시는 분</th>
-                                <td><input type="text" value={receiver.name} onChange={handleName}></input></td>
+                                <td>{receiver.name}</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td><input type="text" value={receiver.address} onChange={handleAddress}></input></td>
+                                <td>{receiver.address}</td>
                             </tr>
                             <tr>
                                 <th>휴대전화</th>
-                                <td><input type="text" value={receiver.phone} onChange={handlePhone}></input></td>
+                                <td>{receiver.phone}</td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text" value={receiver.email} onChange={handleEmail}></input></td>
+                                <td>{receiver.email}</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div className="payment">
-                    <Button variant="dark" onClick={order}>결제하기</Button>
                 </div>
             </div>
         </>
     );
 };
-export default Order;
+export default HistoryDetail;

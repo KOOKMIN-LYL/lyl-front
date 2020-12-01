@@ -1,5 +1,6 @@
 import React from 'react';
 import 'style/Cart.css';
+import { Link } from 'react-router-dom';
 
 const HistoryItem = ({ id, img, name, price, count }) => {
 
@@ -9,16 +10,20 @@ const HistoryItem = ({ id, img, name, price, count }) => {
 
     return (
         <tr>
+
+
             <td>{id}</td>
             <td>
                 <img src={img} width="100px" alt=""></img>
             </td>
             {
                 (count === 1)
-                    ? <td>{name}</td>
-                    : <td>{name} 외 {count-1} 종</td>
+                    ? <td><Link to={`/historydetail/${id}`} className="productLink">{name}</Link></td>
+                    : <td><Link to={`/historydetail/${id}`} className="productLink">{name} 외 {count - 1} 종</Link></td>
             }
             <td>{numberFormat(price)}</td>
+
+
         </tr>
     );
 };

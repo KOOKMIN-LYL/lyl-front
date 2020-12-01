@@ -7,4 +7,5 @@ export { default as Cart } from 'pages/Cart';
 export { default as Order } from 'pages/Order';
 export { default as MyPage } from 'pages/MyPage';
 export { default as History } from 'pages/History';
+export { default as HistoryDetail } from 'pages/HistoryDetail';
 export { default as Profile } from 'pages/Profile';

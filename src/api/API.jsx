@@ -21,6 +21,14 @@ export default {
     },
 
     getMainImage() {
+        return axios.get('/main', {
+            headers: {
+                'X-AUTH-TOKEN': Cookies.get('token')
+            },
+        });
+    },
+
+    getRecent() {
         return axios.get('/main');
     },
 
@@ -105,6 +113,16 @@ export default {
                 'X-AUTH-TOKEN': Cookies.get('token')
             },
         })
+    },
+
+    purchase(data, orderId) {
+        console.log(data);
+        return axios.post(`/order/purchase/${orderId}`, data,
+            {
+                headers: {
+                    'X-AUTH-TOKEN': Cookies.get('token')
+                },
+            });
     },
 
     getUser() {

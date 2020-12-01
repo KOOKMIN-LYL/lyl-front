@@ -114,6 +114,7 @@ const Category = ({ match }) => {
             await Api
                 .getCategoryItems(match.params.id, currentPage - 1, 12)
                 .then((res) => {
+                    console.log(res.data);
                     setProductList(res.data.content)
                     setTotalPages(res.data.totalPages)
                     setCheckFirst(res.data.first)
@@ -127,11 +128,16 @@ const Category = ({ match }) => {
         getCategoryItems();
     }, [match.params.id, currentPage, totalPages])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+
     return (
         <>
-            <div className="order">
+            {/* <div className="order">
                 정렬
-            </div>
+            </div> */}
             <div className="productsContainer">
                 <ul className="gird4">
                     {makeProduct}

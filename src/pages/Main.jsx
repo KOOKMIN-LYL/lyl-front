@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick'
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'style/Main.css';
-import img from '1.jpg';
 import main1 from 'main1.jpg';
 import main2 from 'main2.jpg';
 import Api from 'api/API';
 
 const Main = () => {
-    // const [mainImage, setMainImage] = useState([]);
-    const [top10, setTop10] = useState([]);
+    const [mainProducts, setMainProducts] = useState({
+        top10Products: [],
+        recentProducts: [],
+    });
 
     const mainSettings = {
         dots: true,
@@ -24,16 +24,17 @@ const Main = () => {
     };
 
     const settings = {
+        dots: true,
         arrows: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         autoplay: true,
         autoplaySpeed: 10000,
     };
 
-    const makeTop10 = top10.map((product) => {
+    const makeTop10 = mainProducts.top10Products.map((product) => {
         return (
             <li className="box" key={product.productNumber}>
                 <Link to={`product/${product.productNumber}`} className="productLink">
@@ -49,20 +50,36 @@ const Main = () => {
         )
     })
 
+    const makeRecent = mainProducts.top10Products.map((product) => {
+        return (
+            <li className="box" key={product.productNumber}>
+
+                <div className="recentItem">
+                    <img src={product.imagePath} width="100%" alt=""></img>
+                    <Link to={`product/${product.productNumber}`} className="productLink">
+                        <div className="about">
+                            <p className="name">{product.name}</p>
+                            <p className="price">{product.price} won</p>
+                        </div>
+                    </Link>
+                </div>
+            </li>
+        )
+    })
+
     useEffect(() => {
         const getMainImage = async () => {
             await Api
                 .getMainImage()
                 .then((res) => {
-                    console.log(res.data);
-                    setTop10(res.data.top10Products)
+                    setMainProducts(res.data)
                 });
         };
 
         getMainImage();
-    }, [setTop10])
+    }, [setMainProducts])
 
-    console.log(top10);
+    console.log(mainProducts);
 
     return (
         <>
@@ -71,6 +88,12 @@ const Main = () => {
                     <img src={main1} alt=""></img>
                     <img src={main2} alt=""></img>
                     {/* {makeMainImge} */}
+                </Slider>
+            </div>
+            <div className="bestSeller">
+                <div className="mainHeader">Recent Items</div>
+                <Slider className="recentSlider" {...settings}>
+                    {makeRecent}
                 </Slider>
             </div>
             <div className="bestSeller">

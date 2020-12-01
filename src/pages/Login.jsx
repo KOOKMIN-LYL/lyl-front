@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Api from 'api/API';
@@ -31,6 +31,11 @@ const Login = ({ history }) => {
                 alert('아이디 또는 비밀번호가 일치하지 않습니다.')
             })
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
 
     return (
         <>

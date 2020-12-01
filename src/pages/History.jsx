@@ -27,12 +27,18 @@ const History = () => {
             await Api
                 .getAllOrder()
                 .then((res) => {
+                    console.log(res.data);
                     setHistoryList(res.data.content)
                 });
         };
 
         getAllOrder();
     },[setHistoryList])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
 
     return (
         <div className="historyC">
