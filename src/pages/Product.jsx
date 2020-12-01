@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap'
 import 'style/Product.css'
 import Api from 'api/API';
-import img from '1.jpg';
 import Cookies from 'js-cookie';
 
 const Product = ({ match, history }) => {

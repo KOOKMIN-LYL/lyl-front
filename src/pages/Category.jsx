@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import Api from 'api/API';
 import 'style/Category.css';
 
-import img from '1.jpg';
-
 const Category = ({ match }) => {
     const [productList, setProductList] = useState([]);
     const [totalPages, setTotalPages] = useState(0);

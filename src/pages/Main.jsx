@@ -7,10 +7,8 @@ import main2 from 'main2.jpg';
 import Api from 'api/API';
 
 const Main = () => {
-    const [mainProducts, setMainProducts] = useState({
-        top10Products: [],
-        recentProducts: [],
-    });
+    const [top10Products, setTop10Products] = useState([]);
+    const [recentProducts, setRecentProducts] = useState([]);
 
     const mainSettings = {
         dots: true,
@@ -34,7 +32,7 @@ const Main = () => {
         autoplaySpeed: 10000,
     };
 
-    const makeTop10 = mainProducts.top10Products.map((product) => {
+    const makeTop10 = top10Products.map((product) => {
         return (
             <li className="box" key={product.productNumber}>
                 <Link to={`product/${product.productNumber}`} className="productLink">
@@ -50,10 +48,9 @@ const Main = () => {
         )
     })
 
-    const makeRecent = mainProducts.recentProducts.map((product) => {
+    const makeRecent = recentProducts.map((product) => {
         return (
             <li className="box" key={product.productNumber}>
-
                 <div className="recentItem">
                     <img src={product.imagePath} width="100%" alt=""></img>
                     <Link to={`product/${product.productNumber}`} className="productLink">
@@ -72,12 +69,15 @@ const Main = () => {
             await Api
                 .getMainImage()
                 .then((res) => {
-                    setMainProducts(res.data)
+                    setTop10Products(res.data.top10Products);
+                    if (res.data.recentProducts !== undefined) {
+                        setRecentProducts(res.data.recentProducts);
+                    }
                 });
         };
 
         getMainImage();
-    }, [setMainProducts])
+    }, [setTop10Products])
 
     return (
         <>
@@ -89,20 +89,18 @@ const Main = () => {
                 </Slider>
             </div>
             {
-                (mainProducts.recentProducts === undefined)
+
+                (recentProducts.length === 0)
                     ? (<></>)
                     : (
-                        (mainProducts.recentProducts.length === 0)
-                            ? (<></>)
-                            : (
-                                <div className="bestSeller">
-                                    <div className="mainHeader">Recent Items</div>
-                                    <Slider className="recentSlider" {...settings}>
-                                        {makeRecent}
-                                    </Slider>
-                                </div>
-                            )
+                        <div className="bestSeller">
+                            <div className="mainHeader">Recent Items</div>
+                            <Slider className="recentSlider" {...settings}>
+                                {makeRecent}
+                            </Slider>
+                        </div>
                     )
+
 
             }
             <div className="bestSeller">
