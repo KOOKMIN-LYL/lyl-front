@@ -33,7 +33,11 @@ export default {
     },
 
     getProduct(data) {
-        return axios.get(`/product/${data}`)
+        return axios.get(`/product/${data}`, {
+            headers: {
+                'X-AUTH-TOKEN': Cookies.get('token')
+            },
+        })
     },
 
     getCart() {

@@ -50,7 +50,7 @@ const Main = () => {
         )
     })
 
-    const makeRecent = mainProducts.top10Products.map((product) => {
+    const makeRecent = mainProducts.recentProducts.map((product) => {
         return (
             <li className="box" key={product.productNumber}>
 
@@ -88,12 +88,23 @@ const Main = () => {
                     {/* {makeMainImge} */}
                 </Slider>
             </div>
-            <div className="bestSeller">
-                <div className="mainHeader">Recent Items</div>
-                <Slider className="recentSlider" {...settings}>
-                    {makeRecent}
-                </Slider>
-            </div>
+            {
+                (mainProducts.recentProducts === undefined)
+                    ? (<></>)
+                    : (
+                        (mainProducts.recentProducts.length === 0)
+                            ? (<></>)
+                            : (
+                                <div className="bestSeller">
+                                    <div className="mainHeader">Recent Items</div>
+                                    <Slider className="recentSlider" {...settings}>
+                                        {makeRecent}
+                                    </Slider>
+                                </div>
+                            )
+                    )
+
+            }
             <div className="bestSeller">
                 <div className="mainHeader">Top 10</div>
                 <ul className="gird4">
