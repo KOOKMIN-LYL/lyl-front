@@ -7,7 +7,12 @@ const HistoryDetail = ({ match }) => {
     const [orderList, setOrderList] = useState([]);
     const [user, setUser] = useState({});
     const [totalPrice, setTotalPrice] = useState(0);
-    const [receiver, setReceiver] = useState({})
+    const [receiver, setReceiver] = useState({
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
+    })
 
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -33,7 +38,9 @@ const HistoryDetail = ({ match }) => {
             await Api
                 .getOrder(match.params.id)
                 .then((res) => {
-                    setReceiver(res.data.orderDeliveryInfos[1]);
+                    if (res.data.orderDeliveryInfos.length !== 0) {
+                        setReceiver(res.data.orderDeliveryInfos[1]);
+                    }
                     setOrderList(res.data.orderProducts);
                 });
         };

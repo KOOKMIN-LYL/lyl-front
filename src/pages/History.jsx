@@ -27,7 +27,6 @@ const History = () => {
             await Api
                 .getAllOrder()
                 .then((res) => {
-                    console.log(res.data);
                     setHistoryList(res.data.content)
                 });
         };

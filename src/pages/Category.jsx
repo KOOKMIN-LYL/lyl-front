@@ -114,7 +114,6 @@ const Category = ({ match }) => {
             await Api
                 .getCategoryItems(match.params.id, currentPage - 1, 12)
                 .then((res) => {
-                    console.log(res.data);
                     setProductList(res.data.content)
                     setTotalPages(res.data.totalPages)
                     setCheckFirst(res.data.first)

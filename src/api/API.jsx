@@ -116,7 +116,6 @@ export default {
     },
 
     purchase(data, orderId) {
-        console.log(data);
         return axios.post(`/order/purchase/${orderId}`, data,
             {
                 headers: {
@@ -134,7 +133,7 @@ export default {
     },
 
     getAllOrder(data) {
-        return axios.get('/order?orderType=ORDER', {
+        return axios.get('/order?orderType=ORDER&orderStatus=PENDING', {
             headers: {
                 'X-AUTH-TOKEN': Cookies.get('token')
             },

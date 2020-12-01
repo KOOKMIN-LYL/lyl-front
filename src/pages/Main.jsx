@@ -79,8 +79,6 @@ const Main = () => {
         getMainImage();
     }, [setMainProducts])
 
-    console.log(mainProducts);
-
     return (
         <>
             <div className="mainImage">
