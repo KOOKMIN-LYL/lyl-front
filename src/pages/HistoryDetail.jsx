@@ -38,9 +38,7 @@ const HistoryDetail = ({ match }) => {
             await Api
                 .getOrder(match.params.id)
                 .then((res) => {
-                    if (res.data.orderDeliveryInfos.length !== 0) {
-                        setReceiver(res.data.orderDeliveryInfos[1]);
-                    }
+                    setReceiver(res.data.orderDeliveryInfos[1]);
                     setOrderList(res.data.orderProducts);
                 });
         };
