@@ -21,7 +21,7 @@ export default {
     },
 
     getMainImage() {
-        return axios.get('/mainimage');
+        return axios.get('/main');
     },
 
     getProduct(data) {

@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.bestSeller .gird4 {
+    margin-top: 20px;
+}
+
 .bestSellerItem {
     display: inline-block;
     width: 100%;
@@ -25,10 +29,7 @@
 }
 
 .mainHeader {
+    margin-top: 150px;
     font-size: 38px;
     text-align: left;
-}
-
-@media (max-width: 480px) {
-    width: 100%;
 }

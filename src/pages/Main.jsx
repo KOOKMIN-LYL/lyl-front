@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick'
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,11 @@ import 'style/Main.css';
 import img from '1.jpg';
 import main1 from 'main1.jpg';
 import main2 from 'main2.jpg';
+import Api from 'api/API';
 
 const Main = () => {
     // const [mainImage, setMainImage] = useState([]);
+    const [top10, setTop10] = useState([]);
 
     const mainSettings = {
         dots: true,
@@ -31,25 +33,36 @@ const Main = () => {
         autoplaySpeed: 10000,
     };
 
-    // const makeMainImge = mainImage.map((product) => {
-    //     return (
-    //         <Link to={`product/${product.productId}`} key={product.productId}>
-    //             <img src={main1} alt=""></img>
-    //         </Link>
-    //     )
-    // })
+    const makeTop10 = top10.map((product) => {
+        return (
+            <li className="box" key={product.productNumber}>
+                <Link to={`product/${product.productNumber}`} className="productLink">
+                    <div className="bestSellerItem">
+                        <img src={product.imagePath} width="100%" alt=""></img>
+                        <div className="about">
+                            <p className="name">{product.name}</p>
+                            <p className="price">{product.price} won</p>
+                        </div>
+                    </div>
+                </Link>
+            </li>
+        )
+    })
 
-    // useEffect(() => {
-    //     const getMainImage = async () => {
-    //         await Api
-    //             .getMainImage()
-    //             .then((res) => {
-    //                 setMainImage(res.data.products)
-    //             });
-    //     };
+    useEffect(() => {
+        const getMainImage = async () => {
+            await Api
+                .getMainImage()
+                .then((res) => {
+                    console.log(res.data);
+                    setTop10(res.data.top10Products)
+                });
+        };
 
-    //     getMainImage();
-    // }, [setMainImage])
+        getMainImage();
+    }, [setTop10])
+
+    console.log(top10);
 
     return (
         <>
@@ -61,120 +74,13 @@ const Main = () => {
                 </Slider>
             </div>
             <div className="bestSeller">
-                <Slider {...settings}>
-                    <div>
-                        <Link to="product/1" className="productLink">
-                            <div className="sliderItem">
-                                <img src={img} width="300px" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                        <Link to="product/1" className="productLink">
-                            <div className="sliderItem">
-                                <img src={img} width="300px" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to="product/2" className="productLink">
-                            <div className="sliderItem">
-                                <img src={img} width="300px" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                        <Link to="product/1" className="productLink">
-                            <div className="sliderItem">
-                                <img src={img} width="300px" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </div>
-                </Slider>
-            </div>
-            <div className="bestSeller">
-                <div className="mainHeader">Recent Hot Item</div>
+                <div className="mainHeader">Top 10</div>
                 <ul className="gird4">
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
-                    <li className="box">
-                        <Link to="product/1" className="productLink">
-                            <div className="bestSellerItem">
-                                <img src={img} width="100%" alt=""></img>
-                                <h5>MARIA KROSS</h5>
-                                <h5>99,000 won</h5>
-                            </div>
-                        </Link>
-                    </li>
+                    {makeTop10}
                 </ul>
-                <div >
+                {/* <div >
                     <Button variant="dark">View More</Button>
-                </div>
+                </div> */}
             </div>
 
         </>

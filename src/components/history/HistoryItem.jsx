@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'style/Cart.css';
-import Api from 'api/API';
 
 const HistoryItem = ({ id, img, name, price, count }) => {
 
@@ -17,7 +16,7 @@ const HistoryItem = ({ id, img, name, price, count }) => {
             {
                 (count === 1)
                     ? <td>{name}</td>
-                    : <td>{name} 외 {count} 종</td>
+                    : <td>{name} 외 {count-1} 종</td>
             }
             <td>{numberFormat(price)}</td>
         </tr>

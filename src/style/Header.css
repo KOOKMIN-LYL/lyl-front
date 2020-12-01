@@ -1,4 +1,4 @@
-@media (min-width: 481px) {
+
     .header {
         width: 100%;
         padding: 0.5rem 6rem;
@@ -33,20 +33,15 @@
         width: 100%;
         margin: 0 auto;
         max-width: 1200px;
-        height: 300px;
-        margin-top: 50px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header {
-        position: relative;
-    }
-    .mr-auto {
-        display: none;
+        margin-top: 150px;
+        margin-bottom: 50px;
     }
 
-    .myList {
-        display: none;
+    .info {
+        text-align: center;
+        font-weight: 400;
     }
-}
+
+    .info span {
+        margin-right: 15px;
+    }

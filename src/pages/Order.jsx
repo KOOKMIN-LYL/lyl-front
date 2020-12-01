@@ -156,7 +156,7 @@ const Order = ({ match }) => {
                 </div>
 
                 <div className="orderInfo">
-                    배송 정보 <Button size="sm" variant="dark" onClick={same}>주문 정보와 동일</Button>
+                    배송 정보 <Button size="sm" variant="dark" onClick={same} className="same">주문 정보와 동일</Button>
                     <table border="1">
                         <tbody>
                             <tr>

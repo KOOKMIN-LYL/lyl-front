@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Api from 'api/API';
 import CartItem from 'components/cart/CartItem';
+import UserContext from 'context/UserContext';
 import 'style/Cart.css';
+import Cookies from 'js-cookie';
 
 const Cart = ({ history }) => {
     const [cartList, setCartList] = useState([]);
     const [orderId, setOrderId] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [update, setUpdate] = useState(false);
+    const { setIsLogged } = useContext(UserContext);
 
     const numberFormat = (inputNumber) => {
         return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -56,7 +59,14 @@ const Cart = ({ history }) => {
                     .buyCart(product)
                     .then((res) => {
                         history.push(`/order/${res.data}`);
-                    });
+                    })
+                    .catch(err => {
+                        Cookies.remove('isLogged');
+                        Cookies.remove('token');
+                        setIsLogged(false);
+                        setUpdate(!update);
+                        alert("로그아웃 되었습니다.")
+                    })
             };
             buyCart();
         }
@@ -73,7 +83,16 @@ const Cart = ({ history }) => {
                 .then((res) => {
                     setOrderId(res.data.id);
                     setCartList(res.data.orderProducts);
-                });
+                })
+                .catch(err => {
+                    history.push('/')
+                    alert("로그아웃 되었습니다.")
+                    Cookies.remove('isLogged');
+                    Cookies.remove('token');
+                    setIsLogged(false);
+                    setUpdate(!update);
+                    history.push('/')
+                })
         };
 
         getCart();
