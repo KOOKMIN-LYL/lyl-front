@@ -43,7 +43,7 @@ const Header = () => {
         (Cookies.get('isLogged'))
             ? (
                 <Navbar fixed="top" variant="dark" className="header">
-                    <Link to="/" className="headerLink"><img width="100px" src={logo}></img></Link>
+                    <Link to="/" className="headerLink"><img width="100px" src={logo} alt=""></img></Link>
                     <Nav className="mr-auto">
                         {makeCategory}
                     </Nav>
@@ -56,7 +56,7 @@ const Header = () => {
             )
             : (
                 <Navbar fixed="top" variant="dark" className="header">
-                    <Link to="/" className="headerLink"><h1>LYL</h1></Link>
+                    <Link to="/" className="headerLink"><img width="100px" src={logo} alt=""></img></Link>
                     <Nav className="mr-auto">
                         {makeCategory}
                     </Nav>

@@ -37,7 +37,7 @@ const Main = () => {
             <li className="box" key={product.productNumber}>
                 <Link to={`product/${product.productNumber}`} className="productLink">
                     <div className="bestSellerItem">
-                        <img src={product.imagePath} width="100%" alt=""></img>
+                        <img src={product.imagePath} width="100%" height="270px" alt=""></img>
                         <div className="about">
                             <p className="name">{product.name}</p>
                             <p className="price">{product.price} won</p>
@@ -49,10 +49,13 @@ const Main = () => {
     })
 
     const makeRecent = recentProducts.map((product) => {
+        if(recentProducts.length <= 2) {
+            settings.slidesToShow = recentProducts.length;
+        }
         return (
             <li className="box" key={product.productNumber}>
                 <div className="recentItem">
-                    <img src={product.imagePath} width="100%" alt=""></img>
+                    <img src={product.imagePath} width="300px" height="280px" alt=""></img>
                     <Link to={`product/${product.productNumber}`} className="productLink">
                         <div className="about">
                             <p className="name">{product.name}</p>
